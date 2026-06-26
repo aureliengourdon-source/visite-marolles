@@ -21,6 +21,7 @@ const allStops = [
       },
     ],
     funFact: "De 1964 à 2002, la coupole abritait les équipements de diffusion de l'Eurovision. La voûte de la justice belge servait d'antenne de télévision.",
+    pause: "Bancs sur la terrasse de la Place Poelaert — vue panoramique sur toute la ville. Idéal avant de prendre l'ascenseur.",
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ const allStops = [
       },
     ],
     funFact: "Un train passe sous l'église. Le tunnel ferroviaire Nord-Midi a fissuré les fondations du XIIe siècle — l'édifice avait survécu aux guerres, mais pas aux vibrations du chemin de fer.",
+    pause: "Bancs ombragés sur la Place de la Chapelle, face à l'église. Calme et à l'abri du soleil l'après-midi.",
   },
   {
     id: 3,
@@ -59,6 +61,7 @@ const allStops = [
       },
     ],
     funFact: "La première enceinte de Bruxelles court encore sous les rues du centre-ville. On marche sur le Moyen Âge sans le savoir.",
+    pause: "Quelques pas vers la Gare Centrale — hall ouvert, bancs, toilettes publiques accessibles.",
   },
   {
     id: 4,
@@ -78,6 +81,7 @@ const allStops = [
       },
     ],
     funFact: "Un musée Bruegel était prévu ici dans les années 2010. Il a été abandonné en 2018 pour «une raison un peu surréaliste» — titre littéral d'un article de La Libre Belgique.",
+    pause: "La Rue Haute est bordée de cafés et brasseries — terrasses aux n° 100 à 140, à deux pas de la maison.",
   },
   {
     id: 5,
@@ -97,6 +101,7 @@ const allStops = [
       },
     ],
     funFact: "Au XIXe siècle, la rue Blaes n'avait que deux commerces : papiers peints et lustres. Aujourd'hui c'est le cœur des antiquaires bruxellois.",
+    pause: "Les allées piétonnes de la Cité Hellemans (Rue Blaes, côté pair) ont des bancs à l'ombre sous les arcades.",
   },
   {
     id: 6,
@@ -116,6 +121,7 @@ const allStops = [
       },
     ],
     funFact: "Un bunker de 175 m² dort sous vos pieds — construit en 1942, avec bancs, eau et sanitaires encore intacts. Classé patrimoine bruxellois en 2018.",
+    pause: "Le Jeu de Balle est entouré de terrasses sur les quatre côtés. Idéal pour une pause café ou une bière belge bien méritée.",
   },
   {
     id: 7,
@@ -135,6 +141,7 @@ const allStops = [
       },
     ],
     funFact: "La Bataille inspire la création de l'ARAU et d'Inter-Environnement Bruxelles — deux associations qui défendent encore aujourd'hui la ville contre les projets destructeurs.",
+    pause: "Les cafés autour du Jeu de Balle sont ouverts toute la journée — profitez-en, c'est le cœur du quartier.",
   },
   {
     id: 8,
@@ -154,6 +161,7 @@ const allStops = [
       },
     ],
     funFact: "La statue a été volée plusieurs fois. En 1817, le voleur est condamné aux travaux forcés — et la ville offre à la statue un costume royal doré pour fêter son retour.",
+    pause: "La rue du Midi et la rue de l'Étuve ont plusieurs cafés et boulangeries. Idéal pour une pause avant de remonter vers la Grand-Place.",
   },
   {
     id: 9,
@@ -173,6 +181,7 @@ const allStops = [
       },
     ],
     funFact: "En 2025, le Théâtre de Toone est inscrit au Patrimoine Culturel Immatériel de l'UNESCO — la même liste que les pyramides d'Égypte.",
+    pause: "Le Théâtre Toone possède son propre café-estaminet au rez-de-chaussée — bières belges, décor d'époque. Ouvert même sans voir le spectacle.",
   },
   {
     id: 10,
@@ -192,6 +201,7 @@ const allStops = [
       },
     ],
     funFact: "À Bruxelles, «architek» est resté une insulte. Se comporter «comme un architek» signifie détruire ce qui est beau pour faire quelque chose de grand et inutile.",
+    pause: "N'importe quel café des Marolles fera l'affaire — commandez un «demi» (bière pression) et regardez le quartier vivre.",
   },
 ];
 
@@ -316,12 +326,21 @@ function StopCard({
 
       <AnecdoteCarousel anecdotes={stop.anecdotes} />
 
-      <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3">
+      <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 mb-3">
         <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 mb-1">
           Le saviez-vous ?
         </p>
         <p className="text-stone-700 leading-relaxed text-sm">{stop.funFact}</p>
       </div>
+
+      {stop.pause && (
+        <div className="rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 mb-1">
+            Pause
+          </p>
+          <p className="text-stone-700 leading-relaxed text-sm">{stop.pause}</p>
+        </div>
+      )}
 
       {index < total - 1 && <div className="mt-10 border-t border-stone-100" />}
     </section>
