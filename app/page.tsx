@@ -1,249 +1,221 @@
-const stops = [
+// Stops in walking order: arrive at Place Poelaert → descend into the Marolles
+const allStops = [
   {
     id: 1,
-    name: "Place du Jeu de Balle",
-    address: "Place du Jeu de Balle, 1000 Bruxelles",
-    epochs: ["XIXe siècle", "1940–45", "Contemporain"],
-    context:
-      "La place est créée en 1853 sur les ruines d'une usine de locomotives — l'usine Renard. Son nom vient d'un jeu de balle pelote qui s'y pratiquait avant l'arrivée des marchands.",
+    name: "Palais de Justice",
+    address: "Place Poelaert, 1000 Bruxelles",
+    epochs: ["XIXe siècle", "Contemporain"],
+    short: true,
+    context: "Plus grand bâtiment en pierre de taille du XIXe siècle — plus vaste que Saint-Pierre de Rome. Coupole à 104 m.",
     anecdotes: [
       {
-        title: "Le marché le plus vieux de Bruxelles",
-        text: "Un «Oude Merct» (Vieux Marché) vendait déjà des nippes place Anneessens depuis 1640. Le conseil communal le transfère au Jeu de Balle en 1873, parce qu'il «faisait tache» sur les nouveaux boulevards bourgeois.",
+        title: "«Schieven architekt» — l'architecte de travers",
+        text: "Pour bâtir ce colosse, Poelaert rase des centaines de maisons marolliennes. La rancœur est telle qu'une insulte entre dans le dictionnaire bruxellois : «schieven architekt». Elle s'utilise encore aujourd'hui.",
       },
       {
-        title: "Tintin y a chiné",
-        text: "Hergé s'est directement inspiré du marché pour «Le Secret de la Licorne» : Tintin y déniche la maquette qui révèle toute une histoire de piraterie. Quand Spielberg adapte l'album au cinéma, le décor est reproduit fidèlement en studio.",
-      },
-      {
-        title: "En 1999, les habitants ont acheté leurs pavés",
-        text: "Face à un projet de réaménagement menaçant l'âme du marché, les Marolliens lancent une opération de parrainage symbolique : acheter un pavé pour bloquer la transformation. Le projet est abandonné. Les pavés sont toujours là.",
+        title: "Le bâtiment a tué son architecte",
+        text: "Épuisé par 17 ans de chantier, Poelaert meurt d'un AVC en 1879, avant l'inauguration. La légende veut que les Marolliens aient fêté la nouvelle.",
       },
     ],
-    funFact:
-      "Un bunker de la Seconde Guerre mondiale dort sous vos pieds : 175 m², construit en 1942, avec bancs en bois, eau, électricité et sanitaires — encore intacts aujourd'hui. Classé patrimoine bruxellois en 2018.",
+    funFact: "De 1964 à 2002, la coupole abritait les équipements de diffusion de l'Eurovision. La voûte de la justice belge servait d'antenne de télévision.",
   },
   {
     id: 2,
     name: "Notre-Dame de la Chapelle",
     address: "Place de la Chapelle, 1000 Bruxelles",
-    epochs: ["XIIe siècle", "XVIIe siècle", "Contemporain"],
-    context:
-      "La plus vieille église de Bruxelles, fondée en 1134 par le duc Godefroid le Barbu. À l'époque, elle est construite hors des remparts, dans un no man's land marécageux peuplé d'artisans — c'est autour d'elle que naissent les Marolles.",
+    epochs: ["XIIe siècle", "XVIIe siècle"],
+    short: true,
+    context: "La plus vieille église de Bruxelles (1134). Construite hors des remparts — c'est autour d'elle que naissent les Marolles.",
     anecdotes: [
       {
         title: "Bruegel s'y est marié et y est enterré",
-        text: "En 1563, Pieter Bruegel l'Ancien épouse Mayken Coecke ici — sa belle-mère avait exigé qu'il quitte Anvers pour l'avoir à l'œil. Six ans plus tard, il meurt. Son monument funéraire, encore visible, porte la devise : «Nemo propheta in patria» — nul n'est prophète en son pays.",
+        text: "En 1563, Pieter Bruegel l'Ancien épouse ici sa femme — imposé par sa belle-mère pour l'avoir à l'œil. Il est inhumé dans l'église en 1569. Son monument funéraire porte la devise : «Nul n'est prophète en son pays».",
       },
       {
-        title: "Le clocher baroque, rescapé d'un bombardement",
-        text: "En août 1695, Louis XIV ordonne le bombardement de Bruxelles pendant 36 heures consécutives, détruisant 4 000 maisons. L'église est endommagée — et c'est à ce désastre qu'elle doit son superbe clocher baroque du XVIIIe siècle, contraste saisissant avec la nef gothique du XIIe.",
-      },
-      {
-        title: "Un héros y repose aussi",
-        text: "François Anneessens, doyen des guildes bruxelloises décapité en 1719 pour avoir défendu les artisans contre les impôts autrichiens, est inhumé ici — à deux pas de la Tour qui porte son nom.",
+        title: "Le clocher baroque, souvenir d'un bombardement",
+        text: "En 1695, Louis XIV bombarde Bruxelles 36 heures, détruisant 4 000 maisons. C'est à ce désastre que l'église doit son clocher baroque du XVIIIe — contraste saisissant avec la nef gothique du XIIe.",
       },
     ],
-    funFact:
-      "Un train passe sous l'église. La construction du tunnel ferroviaire Nord-Midi a provoqué des tassements et des fissures dans les fondations du XIIe siècle. Le monument avait survécu aux guerres et aux bombardements — il a failli être emporté par les vibrations du chemin de fer.",
+    funFact: "Un train passe sous l'église. Le tunnel ferroviaire Nord-Midi a fissuré les fondations du XIIe siècle — l'édifice avait survécu aux guerres, mais pas aux vibrations du chemin de fer.",
   },
   {
     id: 3,
-    name: "Maison de Bruegel",
-    address: "132, rue Haute (angle rue de la Porte Rouge)",
-    epochs: ["XVIe siècle"],
-    context:
-      "Une maison à pignons à gradins, façade du XVIe siècle, classée monument depuis 1960. Connue comme la «Maison Bruegel» même si la question de savoir si le peintre y a réellement habité reste débattue.",
+    name: "Tour Anneessens",
+    address: "Boulevard de l'Empereur, 1000 Bruxelles",
+    epochs: ["XIIIe siècle", "XVIIIe siècle"],
+    short: false,
+    context: "Vestige de la première enceinte médiévale de Bruxelles (XIIIe s.) : 4 km de remparts, quarante tours, un fossé inondable.",
     anecdotes: [
       {
-        title: "Bruegel ou pas Bruegel ?",
-        text: "Les archives indiquent que Bruegel s'installe ici en 1563. Mais une étude dendrochronologique a daté les poutres du toit de 1541 — avant son arrivée. Ce qui est certain : ses deux fils y naissent. Pieter Brueghel le Jeune (dit «d'Enfer») en 1564, et Jan Brueghel l'Ancien (dit «de Velours») en 1568. Deux peintres majeurs de la Renaissance flamande nés dans cette rue.",
+        title: "Un héros décapité lui a donné son nom",
+        text: "François Anneessens, doyen des guildes, refuse les impôts autrichiens au nom de 49 corporations bruxelloises. Emprisonné dans cette tour, il est décapité sur la Grand-Place en 1719. La Belgique en fera un héros national.",
       },
       {
-        title: "Quatre générations de peintres",
-        text: "David Teniers III, arrière-petit-fils de Bruegel et peintre lui aussi, décède dans cette même maison en 1685. Ces murs ont vu quatre générations d'artistes.",
-      },
-      {
-        title: "Le musée qui n'a jamais vu le jour",
-        text: "Dans les années 2010, un projet de musée Bruegel est lancé ici avec enthousiasme, reçoit beaucoup de soutien… puis s'enlise dans un imbroglio administratif kafkaïen typiquement bruxellois. En 2018, pour «une raison un peu surréaliste» (titre littéral d'un article de La Libre Belgique), le projet est abandonné.",
+        title: "Redécouverte par hasard en 1887",
+        text: "Enfouie sous des maisons pendant des siècles, la tour réapparaît lors d'une démolition voisine. Elle allait être rasée — le bourgmestre Charles Buls la sauve in extremis.",
       },
     ],
-    funFact:
-      "Bruegel était surnommé «Bruegel le Paysan» parce qu'il peignait des scènes de la vie populaire. Révolution esthétique à l'époque : les artistes peignaient des saints et des princes. Bruegel observait les gens des Marolles depuis sa fenêtre — et en faisait de l'art universel.",
+    funFact: "La première enceinte de Bruxelles court encore sous les rues du centre-ville. On marche sur le Moyen Âge sans le savoir.",
   },
   {
     id: 4,
-    name: "Rue Haute & Cité Hellemans",
-    address: "Rue Haute / Rue Blaes, 1000 Bruxelles",
-    epochs: ["Moyen Âge", "XIXe siècle", "1942"],
-    context:
-      "Ces deux rues parallèles sont l'épine dorsale des Marolles. La rue Haute suit le tracé d'une voie romaine menant vers le sud du Brabant — l'une des plus vieilles routes de Bruxelles. Les rues transversales portent encore les noms des métiers qui s'y pratiquaient : rue des Tanneurs, des Orfèvres, des Chaisiers.",
+    name: "Maison de Bruegel",
+    address: "132, rue Haute, 1000 Bruxelles",
+    epochs: ["XVIe siècle"],
+    short: true,
+    context: "Maison à pignons à gradins du XVIe siècle, classée monument. Connue comme la «Maison Bruegel» — bien que sa présence réelle ici reste débattue.",
     anecdotes: [
       {
-        title: "Une terre d'accueil depuis toujours",
-        text: "Situé délibérément hors des premières murailles de Bruxelles, le quartier a toujours accueilli ceux que la ville officielle rejetait : réfugiés protestants au XVIe siècle, républicains espagnols en 1936, Juifs polonais fuyant les pogroms. Dans les années 1930, plus de 4 000 habitants juifs vivaient ici — un tiers de la population — avec 117 commerces dans les dix rues principales.",
+        title: "Bruegel ou pas Bruegel ?",
+        text: "Les archives placent Bruegel ici en 1563. Mais les poutres du toit ont été datées de 1541 — avant son arrivée. Ce qui est sûr : ses deux fils naissent dans cette maison. Pieter («d'Enfer») en 1564, Jan («de Velours») en 1568.",
       },
       {
-        title: "La Cité Hellemans : l'Art Nouveau pour les pauvres",
-        text: "En 1912, 2 164 personnes s'entassaient dans 152 masures sans eau ni hygiène sur un seul bloc. L'architecte Émile Hellemans construit 272 logements sociaux avec larges allées piétonnes et passages sous arcades, inaugurés en 1915. L'un des premiers ensembles de logements sociaux de Belgique. Les allées portent les noms des anciens métiers du quartier.",
-      },
-      {
-        title: "Une rafle le 3 septembre 1942",
-        text: "À 20h30, des policiers allemands bloquent plusieurs rues. Toutes les maisons sont fouillées. Après les arrestations, les Allemands inscrivent «Judenrein» sur les portes. 718 personnes sont emmenées à la caserne Dossin de Malines. Seules 18 survivent.",
+        title: "Quatre générations de peintres sous le même toit",
+        text: "L'arrière-petit-fils de Bruegel, David Teniers III, décède dans cette maison en 1685. Ces murs ont traversé quatre générations d'artistes.",
       },
     ],
-    funFact:
-      "Au XIXe siècle, la rue Blaes n'avait que deux types de commerces : des marchands de papiers peints et des vendeurs de lustres. Tout le quartier se tapissait et s'éclairait dans la même rue. Aujourd'hui c'est le cœur des antiquaires et brocanteurs de Bruxelles.",
+    funFact: "Un musée Bruegel était prévu ici dans les années 2010. Il a été abandonné en 2018 pour «une raison un peu surréaliste» — titre littéral d'un article de La Libre Belgique.",
   },
   {
     id: 5,
-    name: "Tour Anneessens",
-    address: "Boulevard de l'Empereur, 1000 Bruxelles",
-    epochs: ["XIIIe siècle", "XVIIIe siècle", "XIXe siècle"],
-    context:
-      "L'un des vestiges les mieux conservés de la première enceinte médiévale de Bruxelles, construite au début du XIIIe siècle. Le rempart faisait 4 km de long, avec une quarantaine de tours et un fossé pouvant être inondé.",
+    name: "Rue Haute & Cité Hellemans",
+    address: "Rue Haute / Rue Blaes, 1000 Bruxelles",
+    epochs: ["Moyen Âge", "1912", "1942"],
+    short: false,
+    context: "L'épine dorsale des Marolles — la rue Haute suit une voie romaine. Les rues transversales portent encore les noms des anciens métiers : Tanneurs, Orfèvres, Chaisiers.",
     anecdotes: [
       {
-        title: "Un homme décapité a donné son nom à la tour",
-        text: "François Anneessens (1660–1719), doyen de la corporation des Quatre Couronnés, refuse au nom des 49 corporations bruxelloises de plier devant les nouveaux impôts autrichiens. Il est arrêté, emprisonné — selon la tradition, dans cette tour —, jugé et décapité sur la Grand-Place le 19 septembre 1719. La Belgique indépendante en fera un héros national.",
+        title: "La Cité Hellemans : l'Art Nouveau pour les pauvres",
+        text: "En 1912, 2 164 personnes s'entassaient dans 152 masures insalubres. L'architecte Hellemans construit 272 logements sociaux avec arcades et allées piétonnes (1915) — l'un des premiers de Belgique.",
       },
       {
-        title: "La tour dormait cachée sous des maisons",
-        text: "Après le Moyen Âge, la tour fut progressivement enfouie sous de nouvelles constructions et disparut du paysage urbain. En 1887, lors de la démolition d'un vieux quartier voisin, on la redécouvre par hasard. Menacée immédiatement de démolition, c'est l'intervention du bourgmestre Charles Buls qui la sauve.",
-      },
-      {
-        title: "Un train la blesse à nouveau",
-        text: "En 1957, les travaux du tunnel ferroviaire Nord-Midi la percent et l'endommagent. Restaurée en 1967, classée officiellement en 1992.",
+        title: "La rafle du 3 septembre 1942",
+        text: "À 20h30, des policiers allemands fouillent systématiquement toutes les maisons. 718 habitants juifs sont emmenés à Malines, avec «Judenrein» inscrit sur les portes. Seuls 18 survivront.",
       },
     ],
-    funFact:
-      "Quand les ouvriers ont redécouvert la tour en 1887, ils ont aussi trouvé un chapiteau roman sculpté et des fragments de muraille médiévale sous les fondations des maisons démolies. La première enceinte de Bruxelles court toujours sous les rues du centre-ville — on marche sur le Moyen Âge sans le savoir.",
+    funFact: "Au XIXe siècle, la rue Blaes n'avait que deux commerces : papiers peints et lustres. Aujourd'hui c'est le cœur des antiquaires bruxellois.",
   },
   {
     id: 6,
-    name: "Le Palais de Justice",
-    address: "Place Poelaert, 1000 Bruxelles",
-    epochs: ["XIXe siècle", "1944", "Contemporain"],
-    context:
-      "Surface au sol : 26 000 m². Jusqu'en 1965 et le Vehicle Assembly Building de la NASA, c'était le plus grand bâtiment construit en pierre de taille au monde — plus grand que Saint-Pierre de Rome. Sa coupole culmine à 104 mètres. Paul Verlaine l'a dit «piranésien avec une touche de folie».",
+    name: "Place du Jeu de Balle",
+    address: "Place du Jeu de Balle, 1000 Bruxelles",
+    epochs: ["XIXe siècle", "Contemporain"],
+    short: true,
+    context: "Le cœur des Marolles. Marché tous les jours depuis 1919, de 6h à 14h. Parfait pour terminer la balade — terrasses et cafés tout autour.",
     anecdotes: [
       {
-        title: "L'architecte a détruit la moitié d'un quartier",
-        text: "Joseph Poelaert reçoit la commande en 1861. Pour construire ce colosse sur la colline de Coudenberg, il faut raser une partie des Marolles. Des centaines de familles sont expropriées. La colère est immense. C'est à cette époque qu'entre dans le vocabulaire marollien l'insulte : «schieven architekt» — «l'architecte de travers». À ce jour, l'une des insultes les plus lourdes du dialecte local.",
+        title: "Tintin y a chiné",
+        text: "Hergé s'inspire directement de ce marché pour «Le Secret de la Licorne». Tintin y découvre la maquette du bateau qui révèle une histoire de piraterie. Spielberg reproduit le décor fidèlement pour son film.",
       },
       {
-        title: "Le bâtiment a tué son architecte",
-        text: "Poelaert passe 17 ans à se battre avec ce chantier monstrueux. En 1879, épuisé, un AVC l'emporte avant qu'il voie son œuvre terminée. La légende locale raconte que les Marolliens rancuniers ont fêté sa mort. L'inauguration a lieu sans lui, le 15 octobre 1883.",
-      },
-      {
-        title: "Les échafaudages qui n'en finissent pas",
-        text: "En 1944, les Allemands en retraite incendient délibérément les archives et une partie du bâtiment. La coupole brûle. La reconstruction durera des décennies. Depuis 1984, les échafaudages ne quittent plus le Palais — ils sont devenus si permanents qu'ils nécessitent eux-mêmes des travaux d'entretien.",
+        title: "En 1999, les habitants ont acheté leurs pavés",
+        text: "Face à un projet de réaménagement, les Marolliens lancent un parrainage symbolique : acheter un pavé pour bloquer la transformation. Le projet est abandonné.",
       },
     ],
-    funFact:
-      "Depuis 1951, un pendule de Foucault est installé à l'intérieur pour démontrer la rotation de la Terre. Et de 1964 à 2002, la coupole abritait les équipements de diffusion de l'Eurovision. La voûte pharaonique de la justice belge servait d'antenne de télévision.",
+    funFact: "Un bunker de 175 m² dort sous vos pieds — construit en 1942, avec bancs, eau et sanitaires encore intacts. Classé patrimoine bruxellois en 2018.",
   },
   {
     id: 7,
-    name: "La Bataille des Marolles (1969)",
-    address: "Autour de la Place du Jeu de Balle et des rues adjacentes",
+    name: "La Bataille des Marolles",
+    address: "Autour de la Place du Jeu de Balle",
     epochs: ["1969"],
-    context:
-      "En juillet 1969, les habitants de cinq îlots reçoivent une lettre d'expropriation : raser le quartier pour construire une annexe du Palais de Justice. Plus de 1 200 personnes — artisans, personnes âgées, immigrés — sont menacées d'expulsion.",
+    short: false,
+    context: "Juillet 1969 : plus de 1 200 Marolliens reçoivent une lettre d'expropriation pour construire une annexe du Palais de Justice.",
     anecdotes: [
       {
-        title: "Un prêtre mène la rébellion",
-        text: "Jacques Van der Biest, vicaire de la paroisse des Marolles, fonde le Comité Général d'Action des Marolles (CGAM). Méthode radicalement pacifique : affiches «NON» sur tous les murs, conférences de presse, télégrammes aux ministres, et des façades bénévolement rénovées pour prouver que le quartier mérite d'être gardé.",
+        title: "Un prêtre mène la résistance",
+        text: "Le vicaire Jacques Van der Biest fonde le Comité d'Action des Marolles. Méthode : pacifique. Affiches «NON», télégrammes aux ministres, façades rénovées bénévolement pour prouver que le quartier vaut mieux que la démolition.",
       },
       {
-        title: "La victoire en quarante jours",
-        text: "Fin août 1969 — moins de deux mois après les premières lettres — les autorités capitulent. Le quartier est sauvé. Un programme de rénovation est lancé en préservant la structure des rues. C'est une victoire totale et sans précédent pour un quartier populaire face aux pouvoirs publics belges.",
-      },
-      {
-        title: "Une victoire qui dépasse les Marolles",
-        text: "La Bataille inspire la création de l'ARAU (Atelier de Recherche et d'Action Urbaines) et d'Inter-Environnement Bruxelles. Ces deux associations existent toujours et continuent de défendre la ville contre les projets destructeurs.",
+        title: "Victoire en quarante jours",
+        text: "Fin août 1969, les autorités capitulent. Le quartier est sauvé. C'est la première grande victoire populaire contre l'urbanisme moderniste bruxellois.",
       },
     ],
-    funFact:
-      "Contrairement à une légende tenace, la Bataille des Marolles de 1969 n'était pas liée à la construction du métro. C'était bien l'extension du Palais de Justice qui était en jeu. Pour les Marolliens de 1969, l'ennemi portait la robe de magistrat.",
+    funFact: "La Bataille inspire la création de l'ARAU et d'Inter-Environnement Bruxelles — deux associations qui défendent encore aujourd'hui la ville contre les projets destructeurs.",
   },
   {
     id: 8,
-    name: "Théâtre Royal de Toone",
-    address: "Impasse de la Fidélité 6, 1000 Bruxelles",
-    epochs: ["XVIe siècle", "1830", "2025"],
-    context:
-      "La seule marionnetterie de tradition bruxelloise encore en activité. «Toone» est le diminutif bruxellois d'Antoine. La lignée remonte à 1830 et chaque Toone intronise lui-même son successeur — la transmission ne passe pas par la famille, mais par le talent.",
+    name: "Manneken Pis",
+    address: "Angle rue de l'Étuve / rue du Chêne",
+    epochs: ["XIVe siècle", "Contemporain"],
+    short: false,
+    context: "À la lisière nord des Marolles. La fontaine existe depuis 1388 au moins — en pierre d'abord, en bronze depuis 1619.",
     anecdotes: [
-      {
-        title: "L'origine est un acte de résistance",
-        text: "Au XVIe siècle, Philippe II d'Espagne fait fermer les théâtres à Bruxelles pour éviter tout rassemblement contestataire. Réponse des Bruxellois : ils remplacent les acteurs par des marionnettes («poechenelles»), contournant ainsi l'interdiction. Le théâtre de marionnettes naît comme une résistance populaire à la censure espagnole.",
-      },
-      {
-        title: "Le premier Toone ne savait ni lire ni écrire",
-        text: "Antoine Genty — Toone I — crée son théâtre vers 1830 sans jamais avoir appris à lire. Il invente ses pièces de tête, improvise sur des légendes populaires, des opéras entendus en ville, des événements de l'actualité. Les marionnettes étaient aussi un journal parlé pour un public largement illettré.",
-      },
-      {
-        title: "Toone VIII prononce toutes les voix seul",
-        text: "Le Toone actuel (Nicolas Géal) est la voix de tous les personnages — parfois simultanément — dans plusieurs langues : bruxellois, français, anglais, néerlandais, allemand. Le théâtre possède aujourd'hui 1 400 marionnettes.",
-      },
-    ],
-    funFact:
-      "En décembre 2025, le Théâtre de Toone a été inscrit au Patrimoine Culturel Immatériel de l'UNESCO. La même instance qui classe les pyramides d'Égypte protège maintenant le poechenelle en dialecte marollien.",
-  },
-  {
-    id: 9,
-    name: "Le Manneken Pis",
-    address: "Angle rue de l'Étuve / rue du Chêne, 1000 Bruxelles",
-    epochs: ["XIVe siècle", "XVIIe siècle", "Contemporain"],
-    context:
-      "Techniquement à la lisière nord des Marolles, la statue appartient à l'imaginaire populaire bruxellois né précisément dans ce quartier. Et son histoire est beaucoup plus étrange qu'on ne l'imagine.",
-    anecdotes: [
-      {
-        title: "Il existe depuis plus de six siècles",
-        text: "Les archives de la cathédrale Saints-Michel-et-Gudule attestent d'une fontaine représentant un enfant qui urine à cet endroit dès 1388 — en pierre à l'origine. La version en bronze actuelle est commandée en 1619 au sculpteur Jérôme Duquesnoy l'Ancien pour remplacer l'original abîmé.",
-      },
       {
         title: "Plus de mille costumes",
-        text: "Le premier vêtement offert au Manneken Pis date de 1698, cadeau d'un gouverneur des Pays-Bas espagnols. Depuis, les dons n'ont jamais cessé : la garderobe dépasse aujourd'hui le millier de costumes, conservés au musée GardeRobe MannekenPis. Parmi les tenues : une armure de samouraï japonaise, un costume d'Elvis Presley, et la tenue de l'équipe nationale de football.",
+        text: "Le premier costume date de 1698 — cadeau d'un gouverneur espagnol. La garderobe dépasse aujourd'hui le millier de tenues : armure de samouraï, Elvis Presley, Diables Rouges… Il en reçoit encore 20 à 30 par an.",
       },
       {
         title: "Trois légendes, aucune prouvée",
-        text: "Un enfant éteint la mèche d'une bombe en urinant dessus, sauvant la ville. Ou : le fils de Godefroid le Barbu, sorti de son berceau pendant une bataille, est retrouvé en train d'uriner sur les ennemis. Ou encore : une sorcière pétrifie un gamin qui urine sur son mur. Les trois sont bruxelloises. Aucune n'est vérifiable.",
+        text: "Un enfant éteint une bombe en urinant dessus. Ou : le fils d'un duc urine sur ses ennemis depuis son berceau. Ou : une sorcière pétrifie un gamin mal élevé. Les trois sont bruxelloises. Choisissez la vôtre.",
       },
     ],
-    funFact:
-      "La statue originale a été volée plusieurs fois. En 1817, le voleur est condamné aux travaux forcés. En remerciement pour sa «libération», la ville de Bruxelles lui offre un nouveau costume royal doré. Même enlevé, il revient habillé.",
+    funFact: "La statue a été volée plusieurs fois. En 1817, le voleur est condamné aux travaux forcés — et la ville offre à la statue un costume royal doré pour fêter son retour.",
+  },
+  {
+    id: 9,
+    name: "Théâtre Royal de Toone",
+    address: "Impasse de la Fidélité 6, 1000 Bruxelles",
+    epochs: ["XVIe siècle", "1830", "UNESCO 2025"],
+    short: false,
+    context: "La seule marionnetterie de tradition bruxelloise encore active. La lignée «Toone» remonte à 1830 — transmission par le talent, pas par la famille.",
+    anecdotes: [
+      {
+        title: "Né pour contourner la censure espagnole",
+        text: "Philippe II ferme les théâtres à Bruxelles au XVIe siècle pour éviter les rassemblements. Les Bruxellois remplacent les acteurs par des marionnettes («poechenelles»). Le théâtre de marionnettes naît comme résistance.",
+      },
+      {
+        title: "Toone I ne savait ni lire ni écrire",
+        text: "Antoine Genty crée son théâtre vers 1830 sans jamais avoir été scolarisé. Il inventait ses pièces de tête — légendes, opéras entendus en ville, faits d'actualité. Les marionnettes étaient le journal du peuple.",
+      },
+    ],
+    funFact: "En 2025, le Théâtre de Toone est inscrit au Patrimoine Culturel Immatériel de l'UNESCO — la même liste que les pyramides d'Égypte.",
   },
   {
     id: 10,
     name: "Le Dialecte Marollien",
-    address: "Partout dans le quartier — dans les cafés, au marché, sur les murs",
-    epochs: ["XVIe siècle", "XIXe siècle", "Aujourd'hui"],
-    context:
-      "Le marollien — aussi appelé brusseleer — est l'une des langues les plus étranges jamais parlées en Europe occidentale. Ni vraiment français, ni vraiment flamand, ni wallon, ni espagnol — et pourtant tout cela à la fois. Né du brassage de populations qui se sont succédé dans les Marolles, il est aujourd'hui classé au Patrimoine Culturel Immatériel de la Région de Bruxelles-Capitale.",
+    address: "Partout — cafés, marché, murs",
+    epochs: ["XVIe siècle", "Aujourd'hui"],
+    short: false,
+    context: "Le marollien (brusseleer) mélange français, flamand, wallon et espagnol. Classé Patrimoine Culturel Immatériel de la Région bruxelloise.",
     anecdotes: [
       {
-        title: "La langue vivait à l'oral, presque sans traces écrites",
-        text: "Le premier texte littéraire authentiquement marollien documenté remonte à 1871 — un pamphlet signé «Coco Lulu». Un témoignage de 1851 décrit le quartier peuplé d'une population qui parle «une vraie mosaïque de vocables» mêlant le brabançon, le wallon, le picard, le français et l'espagnol — héritage des siècles de domination ibérique.",
-      },
-      {
         title: "La grande invention : le suffixe -eire",
-        text: "La grande invention du marollien : ajouter le suffixe germanique -eire aux verbes français pour créer des verbes hybrides. «Autoriseire» (autoriser), «applaudisseire» (applaudir), «constateire» (constater). Une grammaire germanique pour des mots latins. C'est à cela qu'on reconnaît le vrai Marollien.",
+        text: "Le marollien germanise les verbes français : «autoriseire», «applaudisseire», «constateire». Une grammaire germanique pour des mots latins — la recette d'une langue unique.",
       },
       {
         title: "Trois mots qui ont survécu",
-        text: "De ce dialecte presque disparu, quelques mots résistent dans l'usage courant bruxellois : le brol (les objets inutiles, le bric-à-brac), la zwanze (l'humour pince-sans-rire bruxellois, l'art de se moquer de tout), et le ketje (le gamin de Bruxelles, plein de débrouillardise). Ces trois mots résument l'esprit du quartier.",
+        text: "Le brol (bric-à-brac), la zwanze (humour pince-sans-rire, se moquer de tout y compris de soi), le ketje (le gamin de Bruxelles, débrouillard et roublard). Trois mots, tout un caractère.",
       },
     ],
-    funFact:
-      "À Bruxelles, «architek» tout court est resté une insulte. Dire à quelqu'un qu'il se comporte «comme un architek» sous-entend qu'il détruit ce qui est beau pour faire quelque chose d'inutilement grand et prétentieux. Un legs linguistique de la rancœur populaire contre Poelaert.",
+    funFact: "À Bruxelles, «architek» est resté une insulte. Se comporter «comme un architek» signifie détruire ce qui est beau pour faire quelque chose de grand et inutile.",
+  },
+];
+
+const shortRouteIds = [1, 2, 4, 6];
+
+const generalAnecdotes = [
+  {
+    title: "L'ascenseur de la Place Poelaert",
+    text: "Un ascenseur gratuit relie la Place Poelaert (niveau Palais de Justice) à la rue de la Paille (cœur des Marolles). Un lien physique entre la ville bourgeoise sur sa colline et le quartier populaire en contrebas — libre d'accès à tous, 7j/7.",
+  },
+  {
+    title: "La «bruxellisation» — un mot universel",
+    text: "Les urbanistes du monde entier utilisent le mot «bruxellisation» pour désigner la destruction du tissu historique populaire au profit de grands projets modernistes. Ce terme est né ici, à Bruxelles, dans les années 1960–70.",
+  },
+  {
+    title: "Un quartier jamais officiel",
+    text: "Pendant des siècles, les Marolles étaient délibérément placées hors des remparts. La ville ne voulait pas des artisans et des réfugiés. Résultat : le quartier a forgé sa propre langue, ses propres fêtes, son propre humour — une ville dans la ville.",
+  },
+  {
+    title: "La zwanze — l'humour qui résiste à tout",
+    text: "Pince-sans-rire, auto-dérisoire, capable de se moquer de tout y compris de soi-même : la zwanze est l'humour bruxellois né aux Marolles. La réponse du peuple à la misère, aux destructions, aux pouvoirs successifs.",
   },
 ];
 
 function EpochTag({ label }: { label: string }) {
   return (
-    <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-stone-200 text-stone-700 mr-1 mb-1">
+    <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-stone-100 text-stone-600 mr-1 mb-1 border border-stone-200">
       {label}
     </span>
   );
@@ -251,133 +223,311 @@ function EpochTag({ label }: { label: string }) {
 
 function Anecdote({ title, text }: { title: string; text: string }) {
   return (
-    <div className="mb-4">
+    <div className="mb-5">
       <p className="font-semibold text-stone-800 mb-1">{title}</p>
-      <p className="text-stone-700 leading-relaxed">{text}</p>
+      <p className="text-stone-600 leading-relaxed text-[15px]">{text}</p>
     </div>
   );
 }
 
+function StopCard({
+  stop,
+  index,
+  total,
+}: {
+  stop: (typeof allStops)[0];
+  index: number;
+  total: number;
+}) {
+  return (
+    <section id={`stop-${stop.id}`} className="scroll-mt-16">
+      <div className="flex items-start gap-4 mb-4">
+        <div
+          className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold text-white"
+          style={{ backgroundColor: "oklch(30% 0.04 60)" }}
+        >
+          {String(stop.id).padStart(2, "0")}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-xl font-bold text-stone-900 leading-snug">
+            {stop.name}
+          </h3>
+          <p className="text-sm text-stone-400 mt-0.5">{stop.address}</p>
+          <div className="mt-1.5">
+            {stop.epochs.map((e) => (
+              <EpochTag key={e} label={e} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className="text-stone-500 italic leading-relaxed mb-5 pl-4 border-l-2 border-stone-200 text-[15px]">
+        {stop.context}
+      </p>
+
+      <div className="space-y-0">
+        {stop.anecdotes.map((a) => (
+          <Anecdote key={a.title} title={a.title} text={a.text} />
+        ))}
+      </div>
+
+      <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 mt-1">
+        <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 mb-1">
+          Le saviez-vous ?
+        </p>
+        <p className="text-stone-700 leading-relaxed text-sm">{stop.funFact}</p>
+      </div>
+
+      {index < total - 1 && <div className="mt-10 border-t border-stone-100" />}
+    </section>
+  );
+}
+
 export default function Home() {
+  const shortStops = allStops.filter((s) => shortRouteIds.includes(s.id));
+
   return (
     <>
       {/* Hero */}
       <header
         style={{ backgroundColor: "oklch(22% 0.04 60)" }}
-        className="text-white px-6 py-14 pb-10"
+        className="text-white px-5 pt-12 pb-10"
       >
-        <p className="text-xs font-medium tracking-widest uppercase text-amber-300 mb-4">
-          Bruxelles · Quartier des Marolles
+        <p className="text-xs font-semibold tracking-widest uppercase text-amber-400 mb-4">
+          Bruxelles · 28 juin 2026
         </p>
         <h1
-          className="font-bold tracking-tight mb-3"
-          style={{ fontSize: "clamp(2.5rem, 8vw, 4rem)" }}
+          className="font-bold tracking-tight mb-2 text-white"
+          style={{ fontSize: "clamp(2.8rem, 10vw, 4.5rem)", lineHeight: 1.05 }}
         >
           Les Marolles
         </h1>
-        <p className="text-lg text-stone-300 mb-6">
-          Guide de visite · 28 juin 2026
-        </p>
-        <p className="text-stone-300 leading-relaxed max-w-xl mb-6">
-          Au XVIIe siècle, des religieuses apostolines — les{" "}
-          <em className="text-amber-200">«Maricolles»</em>, celles qui honorent
-          la Vierge Marie — s&apos;installent dans ce bas de la ville pour
-          secourir les plus pauvres. Elles repartiront en 1715, laissant leur
-          nom derrière elles. Certains disent que le nom vient plutôt du vieux
-          mot brabançon <em className="text-amber-200">marolle</em>, la flaque
-          de boue — ce quartier était autrefois marécageux. Bruxelles a gardé
-          les deux versions, selon l&apos;humeur.
-        </p>
-        <div className="flex gap-4 text-sm text-stone-400">
-          <span>10 arrêts</span>
+        <p className="text-stone-300 text-lg mb-8">Guide de visite à pied</p>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-stone-400">
+          <span>Départ : Sainte-Catherine</span>
           <span>·</span>
-          <span>~2h à pied</span>
+          <span>Parcours court : 4 arrêts · 1h</span>
           <span>·</span>
-          <span>Tout plat ou presque</span>
+          <span>Parcours complet : 10 arrêts · 2h</span>
         </div>
       </header>
 
-      {/* Table of contents */}
-      <nav className="sticky top-0 z-10 bg-white border-b border-stone-200 overflow-x-auto">
-        <div className="flex gap-1 px-4 py-2 min-w-max">
-          {stops.map((stop) => (
+      {/* Sticky section nav */}
+      <nav className="sticky top-0 z-20 bg-white border-b border-stone-200 overflow-x-auto">
+        <div className="flex gap-0 px-2 py-0 min-w-max">
+          {[
+            { href: "#venir", label: "Y aller" },
+            { href: "#marolles", label: "Les Marolles" },
+            { href: "#anecdotes", label: "Anecdotes" },
+            { href: "#court", label: "Parcours court" },
+            { href: "#complet", label: "Parcours complet" },
+          ].map((item) => (
             <a
-              key={stop.id}
-              href={`#stop-${stop.id}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors hover:bg-stone-100 text-stone-600"
+              key={item.href}
+              href={item.href}
+              className="px-3 py-3 text-sm whitespace-nowrap text-stone-500 hover:text-stone-900 transition-colors border-b-2 border-transparent hover:border-stone-400"
             >
-              <span
-                className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                style={{ backgroundColor: "oklch(32% 0.04 60)" }}
-              >
-                {stop.id}
-              </span>
-              <span className="hidden sm:inline">
-                {stop.name.split("(")[0].trim()}
-              </span>
+              {item.label}
             </a>
           ))}
         </div>
       </nav>
 
-      {/* Stops */}
-      <main className="max-w-2xl mx-auto px-4 py-8 space-y-12">
-        {stops.map((stop, i) => (
-          <section key={stop.id} id={`stop-${stop.id}`} className="scroll-mt-14">
-            {/* Stop header */}
-            <div className="flex items-start gap-4 mb-4">
-              <div
-                className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white"
-                style={{ backgroundColor: "oklch(32% 0.04 60)" }}
-              >
-                {String(stop.id).padStart(2, "0")}
+      <main className="max-w-2xl mx-auto px-4">
+        {/* ─── SECTION 1 : COMMENT VENIR ─── */}
+        <section id="venir" className="py-10 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-6">
+            Depuis Sainte-Catherine
+          </h2>
+
+          <div className="space-y-4">
+            {/* Option 1 */}
+            <div className="rounded-xl border border-stone-200 p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                  style={{ backgroundColor: "oklch(30% 0.04 60)" }}
+                >
+                  A
+                </span>
+                <p className="font-semibold text-stone-800">
+                  Recommandé — Bus jusqu'au Palais de Justice
+                </p>
               </div>
-              <div>
-                <h2 className="text-2xl font-bold text-stone-900 leading-tight">
-                  {stop.name}
-                </h2>
-                <p className="text-sm text-stone-500 mt-0.5">{stop.address}</p>
-                <div className="mt-2">
-                  {stop.epochs.map((e) => (
-                    <EpochTag key={e} label={e} />
-                  ))}
-                </div>
-              </div>
+              <p className="text-stone-600 text-sm leading-relaxed mb-2">
+                Depuis l'arrêt <strong>Sainte-Catherine</strong>, prenez le{" "}
+                <strong>bus 27 ou 95</strong> en direction du sud (quelques
+                arrêts) jusqu'à <strong>Place Poelaert</strong>. Durée : environ
+                10 min. Vous arrivez directement devant le Palais de Justice,
+                premier arrêt du parcours.
+              </p>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                Depuis la Place Poelaert, prenez{" "}
+                <strong>l'ascenseur gratuit</strong> (entrée rue de la
+                Montagne-aux-Herbes-Potagères, côté gauche du Palais) qui
+                descend directement dans les Marolles — et vous épargne une côte
+                abrupte. C'est l'entrée royale dans le quartier.
+              </p>
             </div>
 
-            {/* Context */}
-            <p className="text-stone-600 italic leading-relaxed mb-5 pl-4 border-l-2 border-stone-200">
-              {stop.context}
+            {/* Option 2 */}
+            <div className="rounded-xl border border-stone-200 p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                  style={{ backgroundColor: "oklch(50% 0.03 60)" }}
+                >
+                  B
+                </span>
+                <p className="font-semibold text-stone-800">
+                  À pied (terrain plat) — entrée par le bas
+                </p>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                Depuis Sainte-Catherine, marchez vers le sud par la{" "}
+                <strong>Rue Antoine Dansaert</strong> → passez devant la{" "}
+                <strong>Bourse</strong> → continuez par le{" "}
+                <strong>Boulevard Lemonnier</strong> → entrez dans les Marolles
+                par la <strong>Place du Jeu de Balle</strong>. Environ 25 min de
+                marche, tout plat. Parcours alors inversé (du bas vers le haut).
+              </p>
+            </div>
+
+            {/* Option 3 */}
+            <div className="rounded-xl border border-stone-200 p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                  style={{ backgroundColor: "oklch(60% 0.02 60)" }}
+                >
+                  C
+                </span>
+                <p className="font-semibold text-stone-800">Taxi / Uber</p>
+              </div>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                5 min depuis Sainte-Catherine, environ <strong>6–8 €</strong>.
+                Demandez <em>«Place Poelaert»</em> pour l'option recommandée, ou{" "}
+                <em>«Place du Jeu de Balle»</em> pour l'entrée par le bas.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div className="border-t border-stone-100" />
+
+        {/* ─── SECTION 2 : VUE MACRO ─── */}
+        <section id="marolles" className="py-10 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-2">
+            Les Marolles en un coup d'œil
+          </h2>
+          <p className="text-stone-400 text-sm mb-6">Vue d'ensemble du quartier</p>
+
+          <div className="space-y-4 text-stone-600">
+            <p className="text-[15px] leading-relaxed">
+              Les Marolles occupent la <strong>partie basse de Bruxelles</strong>, coincées entre la colline du Palais de Justice et le boulevard du Midi. Deux rues parallèles (Rue Haute, Rue Blaes) et une grande place (Jeu de Balle) forment son cœur. On y descend depuis la ville haute par un ascenseur gratuit, on le quitte vers le nord en remontant vers le Manneken Pis.
+            </p>
+            <p className="text-[15px] leading-relaxed">
+              Le nom vient de religieuses apostolines — les <em>«Maricolles»</em>, celles qui honorent la Vierge Marie — installées ici au XVIIe siècle. Elles partent en 1715, laissent leur nom. Autre théorie : <em>marolle</em> = flaque de boue en vieux brabançon. Bruxelles garde les deux, selon l'humeur.
             </p>
 
-            {/* Anecdotes */}
-            <div className="space-y-4 mb-5">
-              {stop.anecdotes.map((a) => (
-                <Anecdote key={a.title} title={a.title} text={a.text} />
-              ))}
+            <div className="rounded-xl bg-stone-50 border border-stone-200 p-4 mt-4">
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                {[
+                  ["Fondation", "XIIe siècle"],
+                  ["Personnage clé", "Pieter Bruegel l'Ancien"],
+                  ["Résistance", "Bataille de 1969"],
+                  ["Marché", "Tous les jours, 6h–14h"],
+                ].map(([k, v]) => (
+                  <div key={k}>
+                    <p className="text-stone-400 text-xs">{k}</p>
+                    <p className="text-stone-700 font-medium text-[13px]">{v}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
+        </section>
 
-            {/* Fun fact */}
-            <div className="rounded-lg bg-amber-50 border-l-4 border-amber-400 px-4 py-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-amber-700 mb-1">
-                Le saviez-vous ?
-              </p>
-              <p className="text-stone-700 leading-relaxed text-sm">
-                {stop.funFact}
-              </p>
-            </div>
+        <div className="border-t border-stone-100" />
 
-            {/* Divider */}
-            {i < stops.length - 1 && (
-              <div className="mt-10 border-t border-stone-200" />
-            )}
-          </section>
-        ))}
+        {/* ─── SECTION 3 : ANECDOTES GÉNÉRALES ─── */}
+        <section id="anecdotes" className="py-10 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-2">
+            Anecdotes générales
+          </h2>
+          <p className="text-stone-400 text-sm mb-6">
+            Ce que le quartier dit de lui-même
+          </p>
+
+          <div className="space-y-5">
+            {generalAnecdotes.map((a) => (
+              <div
+                key={a.title}
+                className="rounded-xl border border-stone-200 p-4"
+              >
+                <p className="font-semibold text-stone-800 mb-1.5">{a.title}</p>
+                <p className="text-stone-600 text-[15px] leading-relaxed">
+                  {a.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="border-t border-stone-100" />
+
+        {/* ─── SECTION 4 : PARCOURS COURT ─── */}
+        <section id="court" className="py-10 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-1">
+            Parcours court
+          </h2>
+          <p className="text-stone-400 text-sm mb-1">
+            4 arrêts · ~1h · descente depuis le Palais de Justice
+          </p>
+          <p className="text-stone-500 text-sm mb-8">
+            Recommandé pour commencer par l'ascenseur de la Place Poelaert, puis
+            descendre naturellement dans le quartier jusqu'au Jeu de Balle.
+          </p>
+
+          <div className="space-y-0">
+            {shortStops.map((stop, i) => (
+              <StopCard
+                key={stop.id}
+                stop={stop}
+                index={i}
+                total={shortStops.length}
+              />
+            ))}
+          </div>
+        </section>
+
+        <div className="border-t border-stone-100" />
+
+        {/* ─── SECTION 5 : PARCOURS COMPLET ─── */}
+        <section id="complet" className="py-10 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-stone-900 mb-1">
+            Parcours complet
+          </h2>
+          <p className="text-stone-400 text-sm mb-8">
+            10 arrêts · ~2h · avec tous les détails et anecdotes
+          </p>
+
+          <div className="space-y-0">
+            {allStops.map((stop, i) => (
+              <StopCard
+                key={stop.id}
+                stop={stop}
+                index={i}
+                total={allStops.length}
+              />
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
       <footer
-        className="mt-16 px-6 py-12 text-center"
+        className="mt-8 px-5 py-12 text-center"
         style={{ backgroundColor: "oklch(22% 0.04 60)" }}
       >
         <p className="text-2xl font-bold text-white mb-2">Bonne visite !</p>
