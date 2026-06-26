@@ -1,5 +1,23 @@
 "use client";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+import type { StopCoord } from "./components/MapView";
+
+const MapView = dynamic(() => import("./components/MapView"), { ssr: false });
+
+// Coords (WGS84) for each stop in the Marolles
+const COORDS: Record<number, [number, number]> = {
+  1: [50.8374, 4.3522], // Palais de Justice
+  2: [50.8444, 4.3480], // Notre-Dame de la Chapelle
+  3: [50.8456, 4.3543], // Tour Anneessens
+  4: [50.8430, 4.3495], // Maison de Bruegel — 132 rue Haute
+  5: [50.8418, 4.3483], // Rue Haute & Cité Hellemans
+  6: [50.8400, 4.3465], // Place du Jeu de Balle
+  7: [50.8405, 4.3468], // Bataille des Marolles
+  8: [50.8450, 4.3499], // Manneken Pis
+  9: [50.8473, 4.3527], // Théâtre Royal de Toone
+  10: [50.8415, 4.3475], // Dialecte Marollien (centre quartier)
+};
 
 // Stops in walking order: arrive at Place Poelaert → descend into the Marolles
 const allStops = [
@@ -349,55 +367,129 @@ function StopCard({
 
 export default function Home() {
   const shortStops = allStops.filter((s) => shortRouteIds.includes(s.id));
+  const [view, setView] = useState<"guide" | "carte">("guide");
+  const [mapMode, setMapMode] = useState<"short" | "full">("short");
+
+  const stopCoords: StopCoord[] = allStops.map((s) => ({
+    id: s.id,
+    name: s.name,
+    address: s.address,
+    coords: COORDS[s.id],
+    short: s.short,
+  }));
 
   return (
     <>
       {/* Hero */}
       <header
         style={{ backgroundColor: "oklch(22% 0.04 60)" }}
-        className="text-white px-5 pt-12 pb-10"
+        className="text-white px-5 pt-10 pb-8"
       >
-        <p className="text-xs font-semibold tracking-widest uppercase text-amber-400 mb-4">
+        <p className="text-xs font-semibold tracking-widest uppercase text-amber-400 mb-3">
           Bruxelles · 28 juin 2026
         </p>
         <h1
           className="font-bold tracking-tight mb-2 text-white"
-          style={{ fontSize: "clamp(2.8rem, 10vw, 4.5rem)", lineHeight: 1.05 }}
+          style={{ fontSize: "clamp(2.4rem, 9vw, 4rem)", lineHeight: 1.05 }}
         >
           Les Marolles
         </h1>
-        <p className="text-stone-300 text-lg mb-8">Guide de visite à pied</p>
-        <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-stone-400">
+        <p className="text-stone-300 text-base mb-6">Guide de visite à pied</p>
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-stone-400">
           <span>Départ : Sainte-Catherine</span>
           <span>·</span>
-          <span>Parcours court : 4 arrêts · 1h</span>
+          <span>Court : 4 arrêts · 1h</span>
           <span>·</span>
-          <span>Parcours complet : 10 arrêts · 2h</span>
+          <span>Complet : 10 arrêts · 2h</span>
         </div>
       </header>
 
-      {/* Sticky section nav */}
-      <nav className="sticky top-0 z-20 bg-white border-b border-stone-200 overflow-x-auto">
-        <div className="flex gap-0 px-2 py-0 min-w-max">
-          {[
-            { href: "#venir", label: "Y aller" },
-            { href: "#marolles", label: "Les Marolles" },
-            { href: "#anecdotes", label: "Anecdotes" },
-            { href: "#court", label: "Parcours court" },
-            { href: "#complet", label: "Parcours complet" },
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="px-3 py-3 text-sm whitespace-nowrap text-stone-500 hover:text-stone-900 transition-colors border-b-2 border-transparent hover:border-stone-400"
+      {/* Sticky nav */}
+      <nav className="sticky top-0 z-20 bg-white border-b border-stone-200">
+        <div className="flex overflow-x-auto">
+          {/* Guide / Carte toggle */}
+          <div className="flex flex-shrink-0 border-r border-stone-200">
+            <button
+              onClick={() => setView("guide")}
+              className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${
+                view === "guide"
+                  ? "text-stone-900 border-b-2 border-stone-800"
+                  : "text-stone-400 hover:text-stone-700"
+              }`}
             >
-              {item.label}
-            </a>
-          ))}
+              Guide
+            </button>
+            <button
+              onClick={() => setView("carte")}
+              className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${
+                view === "carte"
+                  ? "text-stone-900 border-b-2 border-stone-800"
+                  : "text-stone-400 hover:text-stone-700"
+              }`}
+            >
+              Carte
+            </button>
+          </div>
+
+          {/* Section links — only in guide mode */}
+          {view === "guide" && (
+            <div className="flex min-w-max">
+              {[
+                { href: "#venir", label: "Y aller" },
+                { href: "#marolles", label: "Les Marolles" },
+                { href: "#anecdotes", label: "Anecdotes" },
+                { href: "#court", label: "Parcours court" },
+                { href: "#complet", label: "Parcours complet" },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="px-3 py-3 text-sm whitespace-nowrap text-stone-400 hover:text-stone-800 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
+
+          {/* Map mode toggle — only in carte mode */}
+          {view === "carte" && (
+            <div className="flex items-center gap-2 px-4">
+              <span className="text-xs text-stone-400 whitespace-nowrap">Afficher :</span>
+              <button
+                onClick={() => setMapMode("short")}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
+                  mapMode === "short"
+                    ? "bg-stone-800 text-white"
+                    : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                }`}
+              >
+                Parcours court
+              </button>
+              <button
+                onClick={() => setMapMode("full")}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
+                  mapMode === "full"
+                    ? "bg-stone-800 text-white"
+                    : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                }`}
+              >
+                Parcours complet
+              </button>
+            </div>
+          )}
         </div>
       </nav>
 
-      <main className="max-w-2xl mx-auto px-4">
+      {/* ─── VUE CARTE ─── */}
+      {view === "carte" && (
+        <div style={{ height: "calc(100dvh - 112px)" }} className="w-full">
+          <MapView stops={stopCoords} mode={mapMode} />
+        </div>
+      )}
+
+      {/* ─── VUE GUIDE ─── */}
+      <main className="max-w-2xl mx-auto px-4" style={{ display: view === "guide" ? undefined : "none" }}>
         {/* ─── SECTION 1 : COMMENT VENIR ─── */}
         <section id="venir" className="py-10 scroll-mt-16">
           <h2 className="text-2xl font-bold text-stone-900 mb-6">
