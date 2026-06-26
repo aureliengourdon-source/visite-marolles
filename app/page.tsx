@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+
 // Stops in walking order: arrive at Place Poelaert → descend into the Marolles
 const allStops = [
   {
@@ -221,11 +224,57 @@ function EpochTag({ label }: { label: string }) {
   );
 }
 
-function Anecdote({ title, text }: { title: string; text: string }) {
+function AnecdoteCarousel({
+  anecdotes,
+}: {
+  anecdotes: { title: string; text: string }[];
+}) {
+  const [idx, setIdx] = useState(0);
+  const total = anecdotes.length;
+  const a = anecdotes[idx];
+
   return (
-    <div className="mb-5">
-      <p className="font-semibold text-stone-800 mb-1">{title}</p>
-      <p className="text-stone-600 leading-relaxed text-[15px]">{text}</p>
+    <div className="rounded-xl border border-stone-200 overflow-hidden mb-4">
+      {/* Card body */}
+      <div className="px-4 pt-4 pb-3 min-h-[110px]">
+        <p className="font-semibold text-stone-800 mb-1.5 text-[15px]">{a.title}</p>
+        <p className="text-stone-600 text-[14px] leading-relaxed">{a.text}</p>
+      </div>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-between border-t border-stone-100 px-3 py-2 bg-stone-50">
+        <button
+          onClick={() => setIdx((i) => Math.max(0, i - 1))}
+          disabled={idx === 0}
+          className="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-lg"
+          aria-label="Anecdote précédente"
+        >
+          ‹
+        </button>
+
+        {/* Dots */}
+        <div className="flex gap-1.5">
+          {anecdotes.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                i === idx ? "bg-stone-600" : "bg-stone-300"
+              }`}
+              aria-label={`Anecdote ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => setIdx((i) => Math.min(total - 1, i + 1))}
+          disabled={idx === total - 1}
+          className="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-lg"
+          aria-label="Anecdote suivante"
+        >
+          ›
+        </button>
+      </div>
     </div>
   );
 }
@@ -261,17 +310,13 @@ function StopCard({
         </div>
       </div>
 
-      <p className="text-stone-500 italic leading-relaxed mb-5 pl-4 border-l-2 border-stone-200 text-[15px]">
+      <p className="text-stone-500 italic leading-relaxed mb-4 pl-4 border-l-2 border-stone-200 text-[15px]">
         {stop.context}
       </p>
 
-      <div className="space-y-0">
-        {stop.anecdotes.map((a) => (
-          <Anecdote key={a.title} title={a.title} text={a.text} />
-        ))}
-      </div>
+      <AnecdoteCarousel anecdotes={stop.anecdotes} />
 
-      <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 mt-1">
+      <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3">
         <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 mb-1">
           Le saviez-vous ?
         </p>
