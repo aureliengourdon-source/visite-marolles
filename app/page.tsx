@@ -573,7 +573,7 @@ export default function Home() {
           Départ Sainte-Catherine · Court 1h · Complet 2h
         </p>
         <p className="text-stone-400 text-xs italic border-t border-stone-700 pt-4">
-          Pour Bon Papa et Bonne Maman — avec tout l'amour de Joséphine
+          Pour Bon Papa et Bonne Maman — Joséphine & Aurélien
         </p>
       </header>}
 
