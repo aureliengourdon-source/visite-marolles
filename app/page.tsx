@@ -569,8 +569,11 @@ export default function Home() {
         >
           Les Marolles
         </h1>
-        <p className="text-stone-300 text-sm">
+        <p className="text-stone-300 text-sm mb-4">
           Départ Sainte-Catherine · Court 1h · Complet 2h
+        </p>
+        <p className="text-stone-400 text-xs italic border-t border-stone-700 pt-4">
+          Pour Bon Papa et Bonne Maman — avec tout l'amour de Joséphine
         </p>
       </header>
 
