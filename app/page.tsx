@@ -225,6 +225,128 @@ const allStops = [
 
 const shortRouteIds = [1, 2, 4, 6];
 
+// ─── Anecdotes pêle-mêle ───────────────────────────────────────────────────
+const ANECDOTE_THEMES = [
+  {
+    id: "chemin",
+    label: "Sur le chemin",
+    anecdotes: [
+      {
+        title: "Le Grand Sablon — l'autre marché",
+        text: "À 5 min à pied en montant depuis les Marolles, la Place du Grand Sablon abrite chaque week-end un marché d'antiquités et de livres anciens. Plus chic que le Jeu de Balle, moins populaire, mais les deux se font concurrence depuis des décennies. Les brocanteurs des deux places se connaissent tous.",
+      },
+      {
+        title: "La Porte de Hal — l'unique rescapée",
+        text: "À 10 min au sud du Jeu de Balle : la Porte de Hal est la seule porte médiévale encore debout de la deuxième enceinte de Bruxelles (XIVe siècle). Les autres ont été rasées au XIXe siècle pour fluidifier la circulation. Napoléon l'avait transformée en prison ; aujourd'hui c'est un musée d'histoire médiévale.",
+      },
+      {
+        title: "La Galerie Royale Saint-Hubert — la première d'Europe",
+        text: "Inaugurée en 1847, c'est la première galerie marchande couverte d'Europe — avant les passages parisiens. Victor Hugo et Alexandre Dumas y flânaient. Aujourd'hui, chocolatiers, chapeliers et libraires y tiennent encore boutique, à deux pas de la Grand-Place.",
+      },
+      {
+        title: "Les Musées Royaux des Beaux-Arts — le trésor Bruegel",
+        text: "À 10 min en remontant vers le centre, les MRBAB possèdent la plus grande collection de peintures de Pieter Bruegel l'Ancien au monde — dont «La Chute des Anges Rebelles» (1562). Ce tableau était accroché dans l'église Notre-Dame de la Chapelle que vous venez de visiter.",
+      },
+    ],
+  },
+  {
+    id: "insolite",
+    label: "Bruxelles insolite",
+    anecdotes: [
+      {
+        title: "Karl Marx a écrit le Manifeste ici",
+        text: "En 1848, Karl Marx vit en exil à Bruxelles (rue d'Alliance, Ixelles) et y rédige le Manifeste du Parti Communiste avec Engels. Il est expulsé vers la France 48 heures après sa publication, sur ordre du roi Léopold Ier qui craignait une révolution. Le document qui allait changer le monde a été imprimé à Bruxelles.",
+      },
+      {
+        title: "Le saxophone est belge",
+        text: "Adolphe Sax, natif de Dinant, invente le saxophone dans son atelier bruxellois vers 1840. Il dépose le brevet à Paris en 1846. L'instrument révolutionne la musique militaire, puis le jazz — mais Sax mourra ruiné, incapable de défendre ses droits contre les contrefacteurs.",
+      },
+      {
+        title: "Audrey Hepburn est née à Bruxelles",
+        text: "Audrey Hepburn (Audrey Kathleen Ruston) naît le 4 mai 1929 dans une villa d'Ixelles, commune voisine de Bruxelles. Elle passe une partie de son enfance aux Pays-Bas et à Bruxelles. Pendant la guerre, elle souffre de malnutrition à Arnhem — ce qui influencera son engagement pour l'UNICEF jusqu'à sa mort.",
+      },
+      {
+        title: "Plus d'Art Nouveau par habitant qu'ailleurs",
+        text: "Bruxelles est la capitale mondiale de l'Art Nouveau : on y dénombre plus de 1 000 bâtiments du mouvement, la densité la plus élevée au monde par rapport à la population. Victor Horta y invente le style en 1893 avec la Maison Tassel — la première maison entièrement conçue en Art Nouveau.",
+      },
+      {
+        title: "Saint-Gilles, «Petite Saigon» des Marolles",
+        text: "Après 1975, des milliers de réfugiés vietnamiens arrivent en Belgique et s'installent à Saint-Gilles, commune qui borde les Marolles au sud. Chaussée de Waterloo et rue Haute : épiceries asiatiques, traiteurs pho, restaurants thaï se mêlent aux brasseries bruxelloises traditionnelles. Cette présence indochinoise discutée a enrichi la palette culinaire et culturelle du quartier populaire.",
+      },
+    ],
+  },
+  {
+    id: "table",
+    label: "À table",
+    anecdotes: [
+      {
+        title: "Les frites ne sont pas françaises",
+        text: "La Belgique revendique l'invention de la frite, placée dans la vallée de la Meuse au XVIIe siècle — les habitants y faisaient frire du poisson, mais gelaient en hiver et faisaient frire des pommes de terre à la place. Les soldats américains de la Première Guerre mondiale les découvrent grâce aux soldats belges et français, et appellent la recette «French» parce qu'ils entendent du français autour d'eux.",
+      },
+      {
+        title: "La gaufre de Bruxelles contre la gaufre de Liège",
+        text: "Deux gaufres, deux pays distincts. La gaufre de Bruxelles est rectangulaire, légère, croustillante, à manger chaude avec crème fouettée. La gaufre de Liège est ronde, dense, sucrée à la cassonade, à manger froide dans la rue. La bruxelloise est popularis  ée à l'Expo 58 de 1958 ; la liégeoise est la vraie recette historique.",
+      },
+      {
+        title: "Le lambic — une bière qui fermente seule",
+        text: "Le lambic est une bière unique au monde : elle fermente grâce à la levure sauvage présente dans l'air de la vallée de la Senne, autour de Bruxelles. Impossible à reproduire ailleurs. La gueuze est un assemblage de lambics jeunes et vieux, légèrement pétillante. La brasserie Cantillon, à Anderlecht (15 min du Jeu de Balle), brasse toujours selon cette méthode depuis 1900.",
+      },
+      {
+        title: "Les moules-frites — un plat d'adoption",
+        text: "Les moules-frites ne sont pas d'origine belge : elles viennent des Zélandais néerlandais. Mais au XIXe siècle, le chemin de fer permet d'acheminer des coquillages frais très rapidement jusqu'à Bruxelles. Les brasseries populaires s'en emparent et en font le plat national à prix populaire. La moule-frite est un enfant du train.",
+      },
+    ],
+  },
+  {
+    id: "perso",
+    label: "Personnages",
+    anecdotes: [
+      {
+        title: "Jacques Brel — il a quitté Bruxelles pour en parler",
+        text: "Né à Schaerbeek (commune de Bruxelles) en 1929, Brel détestait la bourgeoisie bruxelloise et ne supportait pas sa ville natale. Il la quittera définitivement et chantera «Bruxelles» comme une lettre d'amour à distance. Il finira par s'installer aux Marquises, où il est mort en 1978. Sa chanson reste la plus belle déclaration jamais faite à la ville.",
+      },
+      {
+        title: "René Magritte — le voisin discret",
+        text: "Magritte vécut 24 ans dans une maison ordinaire de la rue Mimosas, à Jette (commune bruxelloise). Il peignait dans sa salle à manger, en costume et chapeau melon, sans studio d'artiste. Ses voisins l'ignoraient. «Ceci n'est pas une pipe» a été peint dans cette pièce banale. La maison est aujourd'hui le Musée Magritte de Jette.",
+      },
+      {
+        title: "Victor Horta — l'homme qui a réinventé l'architecture",
+        text: "En 1893, Victor Horta construit la Maison Tassel (rue Paul-Émile Janson, Ixelles) : première maison Art Nouveau au monde. Courbes végétales, ferronneries apparentes, lumière naturelle partout — il brise tous les codes du XIXe siècle. Sa propre maison-atelier (rue Américaine) est classée UNESCO. Ironie : à la fin de sa vie, il conçoit des bâtiments Art Déco très conventionnels.",
+      },
+      {
+        title: "Django Reinhardt — né dans une caravane",
+        text: "Django Reinhardt naît en 1910 dans une roulotte près de Liverchies (Belgique) de parents manouches. Il perd l'usage de deux doigts de la main gauche dans un incendie à 18 ans — et invente un style de guitare jazz qui n'utilise que deux doigts, influençant toute la guitare moderne. Il passe une grande partie de sa vie entre Bruxelles, Paris et les routes de Belgique.",
+      },
+      {
+        title: "Indochine — la Belgique, leur deuxième pays",
+        text: "Formé à Paris en 1981 par Nicola Sirkis, Indochine est le groupe de rock francophone qui a connu la plus longue carrière en Belgique. Forest National à Bruxelles a accueilli leurs concerts dès les années 80. La Belgique, carrefour entre culture française et monde anglo-saxon, a nourri le son new wave d'Indochine — et le groupe le reconnaît volontiers : «Sans la Belgique, on n'existerait peut-être plus.»",
+      },
+    ],
+  },
+  {
+    id: "art",
+    label: "Art & ville",
+    anecdotes: [
+      {
+        title: "L'Atomium devait être démoli",
+        text: "L'Atomium est construit pour l'Expo 58 (1958) pour représenter un atome de fer grossi 165 milliards de fois. Comme la Tour Eiffel en 1889, il était prévu pour être démonté après l'exposition. Les Bruxellois ont voté pour le garder. Il est aujourd'hui l'un des monuments les plus visités de Belgique — et l'acier de ses sphères a été entièrement remplacé en 2006.",
+      },
+      {
+        title: "Hergé a cartographié Bruxelles dans Tintin",
+        text: "Georges Remi (Hergé) est né à Etterbeek (Bruxelles) en 1907. Il passe sa vie à Bruxelles et y dessine son studio jusqu'à sa mort. Les rues du Jeu de Balle, la Grand-Place, l'architecture Art Nouveau — tout Bruxelles se retrouve dans les albums de Tintin si on regarde attentivement les décors en arrière-plan.",
+      },
+      {
+        title: "La «jonction» — 40 ans de chantier sous Bruxelles",
+        text: "La jonction ferroviaire Nord-Midi relie les deux grandes gares de Bruxelles sous le centre-ville. Elle est décidée en 1903, les travaux durent jusqu'en 1952 — 40 ans de chantier qui perturbent le quartier des Marolles, fissurent Notre-Dame de la Chapelle et font remonter l'eau souterraine dans les caves pendant des années.",
+      },
+      {
+        title: "Le Petit Sablon — 48 statues oubliées",
+        text: "Le Petit Sablon (à 5 min des Marolles en montant) est une petite place-jardin ceinte de 48 statues représentant les guildes médiévales de Bruxelles. Chaque statue tient l'outil de son métier. Inaugurée en 1890, la place est aujourd'hui l'une des plus belles de Bruxelles et l'une des moins fréquentées par les touristes.",
+      },
+    ],
+  },
+];
+
 const generalAnecdotes = [
   {
     title: "L'ascenseur de la Place Poelaert",
@@ -274,7 +396,7 @@ function AnecdoteCarousel({
         <button
           onClick={() => setIdx((i) => Math.max(0, i - 1))}
           disabled={idx === 0}
-          className="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-lg"
+          className="w-11 h-11 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-xl"
           aria-label="Anecdote précédente"
         >
           ‹
@@ -297,11 +419,56 @@ function AnecdoteCarousel({
         <button
           onClick={() => setIdx((i) => Math.min(total - 1, i + 1))}
           disabled={idx === total - 1}
-          className="w-9 h-9 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-lg"
+          className="w-11 h-11 rounded-full flex items-center justify-center text-stone-500 disabled:opacity-20 active:bg-stone-200 hover:bg-stone-200 transition-colors text-xl"
           aria-label="Anecdote suivante"
         >
           ›
         </button>
+      </div>
+    </div>
+  );
+}
+
+function AnecdotesTab() {
+  const [activeTheme, setActiveTheme] = useState(ANECDOTE_THEMES[0].id);
+  const theme = ANECDOTE_THEMES.find((t) => t.id === activeTheme)!;
+
+  return (
+    <div className="pb-10">
+      {/* Theme pills — horizontal scroll */}
+      <div className="overflow-x-auto -mx-4 px-4 mb-6">
+        <div className="flex gap-2 min-w-max">
+          {ANECDOTE_THEMES.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActiveTheme(t.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
+                t.id === activeTheme
+                  ? "text-white"
+                  : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+              }`}
+              style={
+                t.id === activeTheme
+                  ? { backgroundColor: "oklch(30% 0.04 60)" }
+                  : undefined
+              }
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Anecdote cards */}
+      <div className="space-y-4">
+        {theme.anecdotes.map((a) => (
+          <div key={a.title} className="rounded-xl border border-stone-200 p-4">
+            <p className="font-semibold text-stone-800 mb-2 text-[15px]">
+              {a.title}
+            </p>
+            <p className="text-stone-600 text-[14px] leading-relaxed">{a.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -365,9 +532,11 @@ function StopCard({
   );
 }
 
+type Tab = "guide" | "anecdotes" | "carte";
+
 export default function Home() {
   const shortStops = allStops.filter((s) => shortRouteIds.includes(s.id));
-  const [view, setView] = useState<"guide" | "carte">("guide");
+  const [view, setView] = useState<Tab>("guide");
   const [mapMode, setMapMode] = useState<"short" | "full">("short");
 
   const stopCoords: StopCoord[] = allStops.map((s) => ({
@@ -378,118 +547,125 @@ export default function Home() {
     short: s.short,
   }));
 
+  const NAV_TABS: { id: Tab; label: string }[] = [
+    { id: "guide", label: "Guide" },
+    { id: "anecdotes", label: "Anecdotes" },
+    { id: "carte", label: "Carte" },
+  ];
+
   return (
     <>
-      {/* Hero */}
+      {/* Hero compact */}
       <header
         style={{ backgroundColor: "oklch(22% 0.04 60)" }}
-        className="text-white px-5 pt-10 pb-8"
+        className="text-white px-5 pt-8 pb-7"
       >
-        <p className="text-xs font-semibold tracking-widest uppercase text-amber-400 mb-3">
+        <p className="text-[11px] font-semibold tracking-widest uppercase text-amber-400 mb-2">
           Bruxelles · 28 juin 2026
         </p>
         <h1
-          className="font-bold tracking-tight mb-2 text-white"
-          style={{ fontSize: "clamp(2.4rem, 9vw, 4rem)", lineHeight: 1.05 }}
+          className="font-bold tracking-tight mb-1.5 text-white"
+          style={{ fontSize: "clamp(2rem, 8vw, 3.5rem)", lineHeight: 1.05 }}
         >
           Les Marolles
         </h1>
-        <p className="text-stone-300 text-base mb-6">Guide de visite à pied</p>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-stone-400">
-          <span>Départ : Sainte-Catherine</span>
-          <span>·</span>
-          <span>Court : 4 arrêts · 1h</span>
-          <span>·</span>
-          <span>Complet : 10 arrêts · 2h</span>
-        </div>
+        <p className="text-stone-300 text-sm">
+          Départ Sainte-Catherine · Court 1h · Complet 2h
+        </p>
       </header>
 
-      {/* Sticky nav */}
+      {/* Sticky nav — 3 equal tabs */}
       <nav className="sticky top-0 z-20 bg-white border-b border-stone-200">
-        <div className="flex overflow-x-auto">
-          {/* Guide / Carte toggle */}
-          <div className="flex flex-shrink-0 border-r border-stone-200">
+        {/* Main tabs */}
+        <div className="grid grid-cols-3">
+          {NAV_TABS.map((tab) => (
             <button
-              onClick={() => setView("guide")}
-              className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${
-                view === "guide"
+              key={tab.id}
+              onClick={() => setView(tab.id)}
+              className={`py-3.5 text-sm font-medium transition-colors ${
+                view === tab.id
                   ? "text-stone-900 border-b-2 border-stone-800"
-                  : "text-stone-400 hover:text-stone-700"
+                  : "text-stone-400 active:text-stone-700"
               }`}
             >
-              Guide
+              {tab.label}
             </button>
-            <button
-              onClick={() => setView("carte")}
-              className={`px-4 py-3 text-sm font-medium transition-colors whitespace-nowrap ${
-                view === "carte"
-                  ? "text-stone-900 border-b-2 border-stone-800"
-                  : "text-stone-400 hover:text-stone-700"
-              }`}
-            >
-              Carte
-            </button>
-          </div>
+          ))}
+        </div>
 
-          {/* Section links — only in guide mode */}
-          {view === "guide" && (
-            <div className="flex min-w-max">
+        {/* Sub-row: section links for Guide, mode toggle for Carte */}
+        {view === "guide" && (
+          <div className="overflow-x-auto border-t border-stone-100">
+            <div className="flex min-w-max px-2">
               {[
                 { href: "#venir", label: "Y aller" },
                 { href: "#marolles", label: "Les Marolles" },
-                { href: "#anecdotes", label: "Anecdotes" },
+                { href: "#anecdotes-gen", label: "Anecdotes" },
                 { href: "#court", label: "Parcours court" },
                 { href: "#complet", label: "Parcours complet" },
               ].map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-3 py-3 text-sm whitespace-nowrap text-stone-400 hover:text-stone-800 transition-colors"
+                  className="px-3 py-2 text-[12px] whitespace-nowrap text-stone-400 hover:text-stone-800 transition-colors"
                 >
                   {item.label}
                 </a>
               ))}
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Map mode toggle — only in carte mode */}
-          {view === "carte" && (
-            <div className="flex items-center gap-2 px-4">
-              <span className="text-xs text-stone-400 whitespace-nowrap">Afficher :</span>
+        {view === "carte" && (
+          <div className="flex items-center gap-2 px-4 py-2 border-t border-stone-100">
+            <span className="text-xs text-stone-400">Parcours :</span>
+            {(["short", "full"] as const).map((m) => (
               <button
-                onClick={() => setMapMode("short")}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
-                  mapMode === "short"
-                    ? "bg-stone-800 text-white"
-                    : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                key={m}
+                onClick={() => setMapMode(m)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                  mapMode === m
+                    ? "text-white"
+                    : "bg-stone-100 text-stone-600"
                 }`}
+                style={
+                  mapMode === m
+                    ? { backgroundColor: "oklch(30% 0.04 60)" }
+                    : undefined
+                }
               >
-                Parcours court
+                {m === "short" ? "Court (4 arrêts)" : "Complet (10 arrêts)"}
               </button>
-              <button
-                onClick={() => setMapMode("full")}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
-                  mapMode === "full"
-                    ? "bg-stone-800 text-white"
-                    : "bg-stone-100 text-stone-600 hover:bg-stone-200"
-                }`}
-              >
-                Parcours complet
-              </button>
-            </div>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* ─── VUE CARTE ─── */}
       {view === "carte" && (
-        <div style={{ height: "calc(100dvh - 112px)" }} className="w-full">
+        <div style={{ height: "calc(100dvh - 130px)" }} className="w-full">
           <MapView stops={stopCoords} mode={mapMode} />
         </div>
       )}
 
+      {/* ─── VUE ANECDOTES ─── */}
+      {view === "anecdotes" && (
+        <div className="max-w-2xl mx-auto px-4 pt-6">
+          <h2 className="text-xl font-bold text-stone-900 mb-1">
+            Anecdotes pêle-mêle
+          </h2>
+          <p className="text-stone-400 text-sm mb-5">
+            Marolles, Bruxelles, et autour
+          </p>
+          <AnecdotesTab />
+        </div>
+      )}
+
       {/* ─── VUE GUIDE ─── */}
-      <main className="max-w-2xl mx-auto px-4" style={{ display: view === "guide" ? undefined : "none" }}>
+      <main
+        className="max-w-2xl mx-auto px-4"
+        style={{ display: view === "guide" ? undefined : "none" }}
+      >
         {/* ─── SECTION 1 : COMMENT VENIR ─── */}
         <section id="venir" className="py-10 scroll-mt-16">
           <h2 className="text-2xl font-bold text-stone-900 mb-6">
