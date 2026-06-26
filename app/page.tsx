@@ -484,7 +484,7 @@ function StopCard({
   total: number;
 }) {
   return (
-    <section id={`stop-${stop.id}`} className="scroll-mt-16">
+    <section id={`stop-${stop.id}`} className="scroll-mt-24">
       <div className="flex items-start gap-4 mb-4">
         <div
           className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold text-white"
@@ -555,8 +555,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero compact */}
-      <header
+      {/* Hero compact — masqué en mode carte pour que la carte prenne tout l'écran */}
+      {view !== "carte" && <header
         style={{ backgroundColor: "oklch(22% 0.04 60)" }}
         className="text-white px-5 pt-8 pb-7"
       >
@@ -575,7 +575,7 @@ export default function Home() {
         <p className="text-stone-400 text-xs italic border-t border-stone-700 pt-4">
           Pour Bon Papa et Bonne Maman — avec tout l'amour de Joséphine
         </p>
-      </header>
+      </header>}
 
       {/* Sticky nav — 3 equal tabs */}
       <nav className="sticky top-0 z-20 bg-white border-b border-stone-200">
@@ -603,7 +603,7 @@ export default function Home() {
               {[
                 { href: "#venir", label: "Y aller" },
                 { href: "#marolles", label: "Les Marolles" },
-                { href: "#anecdotes-gen", label: "Anecdotes" },
+                { href: "#anecdotes", label: "Anecdotes" },
                 { href: "#court", label: "Parcours court" },
                 { href: "#complet", label: "Parcours complet" },
               ].map((item) => (
@@ -646,7 +646,7 @@ export default function Home() {
 
       {/* ─── VUE CARTE ─── */}
       {view === "carte" && (
-        <div style={{ height: "calc(100dvh - 130px)" }} className="w-full">
+        <div style={{ height: "calc(100dvh - 96px)" }} className="w-full">
           <MapView stops={stopCoords} mode={mapMode} />
         </div>
       )}
@@ -670,7 +670,7 @@ export default function Home() {
         style={{ display: view === "guide" ? undefined : "none" }}
       >
         {/* ─── SECTION 1 : COMMENT VENIR ─── */}
-        <section id="venir" className="py-10 scroll-mt-16">
+        <section id="venir" className="py-10 scroll-mt-24">
           <h2 className="text-2xl font-bold text-stone-900 mb-6">
             Depuis Sainte-Catherine
           </h2>
@@ -751,7 +751,7 @@ export default function Home() {
         <div className="border-t border-stone-100" />
 
         {/* ─── SECTION 2 : VUE MACRO ─── */}
-        <section id="marolles" className="py-10 scroll-mt-16">
+        <section id="marolles" className="py-10 scroll-mt-24">
           <h2 className="text-2xl font-bold text-stone-900 mb-2">
             Les Marolles en un coup d'œil
           </h2>
@@ -786,7 +786,7 @@ export default function Home() {
         <div className="border-t border-stone-100" />
 
         {/* ─── SECTION 3 : ANECDOTES GÉNÉRALES ─── */}
-        <section id="anecdotes" className="py-10 scroll-mt-16">
+        <section id="anecdotes" className="py-10 scroll-mt-24">
           <h2 className="text-2xl font-bold text-stone-900 mb-2">
             Anecdotes générales
           </h2>
@@ -812,7 +812,7 @@ export default function Home() {
         <div className="border-t border-stone-100" />
 
         {/* ─── SECTION 4 : PARCOURS COURT ─── */}
-        <section id="court" className="py-10 scroll-mt-16">
+        <section id="court" className="py-10 scroll-mt-24">
           <h2 className="text-2xl font-bold text-stone-900 mb-1">
             Parcours court
           </h2>
@@ -839,7 +839,7 @@ export default function Home() {
         <div className="border-t border-stone-100" />
 
         {/* ─── SECTION 5 : PARCOURS COMPLET ─── */}
-        <section id="complet" className="py-10 scroll-mt-16">
+        <section id="complet" className="py-10 scroll-mt-24">
           <h2 className="text-2xl font-bold text-stone-900 mb-1">
             Parcours complet
           </h2>
